@@ -263,10 +263,12 @@ class LimeImageExplainer(object):
             temp[mask] = fudged_image[mask]
             imgs.append(temp)
             if len(imgs) == batch_size:
-                preds = classifier_fn(np.array(imgs))
+                #preds = classifier_fn(np.array(imgs))
+                preds = classifier_fn(imgs)
                 labels.extend(preds)
                 imgs = []
         if len(imgs) > 0:
-            preds = classifier_fn(np.array(imgs))
+            #preds = classifier_fn(np.array(imgs))
+            preds = classifier_fn(imgs)
             labels.extend(preds)
         return data, np.array(labels)
